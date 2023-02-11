@@ -16,5 +16,14 @@ double get_sales_tax(double meal_amount)
 
 double get_tip_amount(double meal_amount, double tip_rate)
 {
-	return meal_amount*tip_rate;
+	if (tip_rate < 1) //determine if the tip was input as whole number or decimal
+	{
+		return meal_amount*tip_rate;
+	}
+	else //convert to decimal if entered as whole number
+	{
+		tip_rate = tip_rate*.01;
+		return meal_amount*tip_rate;
+	}
+	
 }
