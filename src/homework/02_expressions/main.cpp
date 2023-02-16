@@ -26,7 +26,7 @@ int main()
 
 	tip_amount = get_tip_amount(meal_amount, tip_rate);
 
-	total = meal_amount+tip_amount+tip_amount;
+	total = meal_amount+tip_amount+tax_amount;
 
 	cout<<"Meal Amount:		"<<meal_amount<<"\n";
 	cout<<"Sales Tax:		"<<tax_amount<<"\n";
