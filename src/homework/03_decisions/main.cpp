@@ -13,9 +13,6 @@ int main()
 
 	cin>>menu_option;
 
-	
-	
-
 	switch (menu_option)
 	{
 	case 1:
