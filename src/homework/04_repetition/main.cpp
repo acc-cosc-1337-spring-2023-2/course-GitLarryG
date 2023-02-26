@@ -57,7 +57,6 @@ int main()
 			{
 				exit = false;
 			}
-			return exit;
 		}
 		else
 		{
