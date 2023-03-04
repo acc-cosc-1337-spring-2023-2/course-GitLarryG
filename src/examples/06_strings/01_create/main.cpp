@@ -53,18 +53,3 @@ int main()
 
     return 0;
 }
-Footer
-© 2023 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-course-briantranacc/main.cpp at master · acc-cosc-1337-spring-2023-2/course-briantranacc
