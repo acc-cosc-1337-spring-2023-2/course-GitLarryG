@@ -30,28 +30,31 @@ string get_dna_completion(string dna)
 {
     string reversed_dna = "";
     string reverse_temp = get_reverse_string(dna);
-    int length = dna.size();
-    for (int letter = 1; letter <= length; letter++)
+
+    for (auto letter : reverse_temp)
     {
-        if (reversed_dna[letter] == 'A')
-        {
-            reversed_dna[letter] = 'T';
-        }
-        else if (reversed_dna[letter] == 'T')
-        {
-            reversed_dna[letter] = 'A';
-        }
-        else if (reversed_dna[letter] == 'C')
-        {
-            reversed_dna[letter] = 'G';
-        }
-        else if (reversed_dna[letter] == 'G')
-        {
-            reversed_dna[letter] = 'C';
-        }
+        char dna_letter;
+
+            switch (letter)
+            {
+                case 'A':
+                    dna_letter = 'T';
+                    break;
+                case 'T':
+                    dna_letter = 'A';
+                    break;
+                case 'C':
+                    dna_letter = 'G';
+                    break;
+                case 'G':
+                    dna_letter = 'C';
+                    break;
+                default:
+                    dna_letter = letter;
+            }
+            reversed_dna += dna_letter;
     }
     return reversed_dna;
-
 }
 
 string get_reverse_string(string dna)
