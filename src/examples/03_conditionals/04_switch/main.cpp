@@ -1,5 +1,5 @@
 #include<iostream>
-
+#include "switch.h"
 using std::cout; using std::cin;
 
 int main() 
