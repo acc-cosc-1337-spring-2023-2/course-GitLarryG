@@ -1,9 +1,32 @@
-//checking_account.h
-class CheckingAccount
-{
-public:
-    int get_balance(){return balance;}
-private:
-    int balance{0};
-};
+#include<stdlib.h>//for rand() function
+#include<iostream>
 
+#ifndef CHECKING_ACCOUNT_H
+#define CHECKING_ACCOUNT_H
+
+
+class CheckingAccount : public BankAccount
+{
+    public:
+    
+}
+
+
+// {
+
+// friend void show_balance(const CheckingAccount &account);
+// friend std::ostream& operator();
+
+// public:
+//     CheckingAccount(){get_balance_from_db();}
+//     CheckingAccount(int b) : balance(b){/*empty function code block*/}
+//     int get_balance() const {return balance;}
+//     void deposit(int amount);
+//     void withdraw(int amount);
+
+// private:
+//     int balance{0}; // explicitly initialize to zero
+//     void get_balance_from_db();
+// };
+
+#endif
