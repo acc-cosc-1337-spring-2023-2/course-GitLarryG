@@ -1,17 +1,17 @@
-#include<stdlib.h>//for rand() function
-#include<iostream>
+//checking_account.h
+#include "bank_account.h"
 
 #ifndef CHECKING_ACCOUNT_H
-#define CHECKING_ACCOUNT_H
-
+#define  CHECKING_ACCOUNT_H
 
 class CheckingAccount : public BankAccount
 {
-    public:
-    
-}
+public:    
+    CheckingAccount(){}
+    CheckingAccount(int b) : BankAccount(b){}
+};
 
-
+#endif
 // {
 
 // friend void show_balance(const CheckingAccount &account);
@@ -28,5 +28,3 @@ class CheckingAccount : public BankAccount
 //     int balance{0}; // explicitly initialize to zero
 //     void get_balance_from_db();
 // };
-
-#endif
