@@ -14,7 +14,7 @@ int main()
 		
 		game.start_game(first_player);
 
-		while (game.game_over() != true)
+		while (!game.game_over())
 		{
 			cout<<"\nEnter position, can be 1-9: ";
 			cin>>position;
@@ -22,9 +22,20 @@ int main()
 			game.mark_board(position);
 			game.display_board();
 		}
+		string winner = game.get_winner();
+		if (winner == "C")
+		{
+			cout<<"\n\nIt's a tie!\n\n";
+		}
+		else
+		{
+			cout<<"\n\n"<<winner<<" wins!\n\n";
+		}
 		cout<<"\n\nGame Over!\n\n"<<"Play again?(y/n): ";
 		cin>>decision;
 	}
 	while (decision != 'n' && decision != 'N');
-	return 0;
+	{
+		return 0;
+	}
 }
