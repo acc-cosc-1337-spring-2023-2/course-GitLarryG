@@ -51,11 +51,8 @@ TEST_CASE("Verify game ends when board is full")
 	REQUIRE(game.game_over() == false);
 
 	game.mark_board(6);
-	REQUIRE(game.get_winner() == "C");
 	REQUIRE(game.game_over() == true);
-
-
-	
+	REQUIRE(game.get_winner() == "C");
 }
 
 TEST_CASE("Verify win by first column")
