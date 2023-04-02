@@ -11,27 +11,6 @@ Create vector of Shape pointers
 iterate with auto
 */
 
-int main()	
-{
-
-	Shape*shape;
-	Circle circle;
-
-	shape = &circle;
-	shape->draw();
-
-	Line line;
-
-	shape = &line;
-	shape->draw();
-
-	Shape shape;
-
-	shape = &line;
-	shape->draw();
-
-	return 0;
-}
 using std::vector;
 using std::unique_ptr; using std::make_unique;
 
@@ -45,3 +24,28 @@ int main()
 	shape[1]->draw();
 
 }
+
+// using std:: vector;
+// using std:: unique_ptr; using std:: make_unique;
+
+// int main()	
+// {
+
+// 	Shape*shape;
+// 	Circle circle;
+
+// 	shape = &circle;
+// 	shape->draw();
+
+// 	Line line;
+
+// 	shape = &line;
+// 	shape->draw();
+
+// 	Shape shape;
+
+// 	shape = &line;
+// 	shape->draw();
+
+// 	return 0;
+// }

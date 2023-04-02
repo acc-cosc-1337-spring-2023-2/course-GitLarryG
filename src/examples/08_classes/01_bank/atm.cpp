@@ -1,5 +1,11 @@
 //atm.cpp
 #include "atm.h"
+#include "checking_account.h"
+#include "savings_account.h"
+#include "customer.h"
+#include<iostream>
+#include<vector>
+#include<memory>
 
 using std::cout; using std::cin;
 
@@ -12,16 +18,17 @@ void display_menu()
     cout<<"4-Exit\n";
 }
 
-void run_menu(std::vector<BankAccount*> accounts)
+void run_menu(std::vector<Customer>& customers)
 {
     auto option = 0;
-
     auto choice = 0;
+
+    auto customer = customers[0];
 
 	cout<<"Checking(1) or savings(2) ";
 	cin>>choice;
 
-    BankAccount* account = accounts[choice-1];
+    std::unique_ptr<BankAccount> &account;
 
     do
     {
@@ -62,3 +69,4 @@ void handle_menu_option(int option, BankAccount *account)
         break;
     }
 }
+
