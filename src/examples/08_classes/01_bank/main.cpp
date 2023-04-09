@@ -58,7 +58,19 @@ int main()
 	customers.push_back(Customer());
 	customers.push_back(Customer());
 
-	run_menu(customers);
+	ATMData data;
+	data.save_customers(customers);
+	std::vector<Customer>& customers = data.get_customers();
+
+	for(auto& customer : customers)
+	{
+		cout<<customer.get_account(0)->get_balance()<<"\n";
+		std::cout<<" ";
+		cout<<customer.get_account(1)->get_balance()<<"\n";
+		std::cout<<"\n";
+	}
+
+	//run_menu(customers);
 
 	return 0;
 }

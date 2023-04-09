@@ -2,6 +2,7 @@
 #include<iostream>
 #include<vector>
 #include "bank_account.h"
+#include "customer.h"
 #include<memory>
 
 
