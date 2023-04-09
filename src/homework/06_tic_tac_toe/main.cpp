@@ -1,26 +1,37 @@
 #include"tic_tac_toe.h"
+#include"tic_tac_toe_manager.h"
 
 int main() 
 {
 	TicTacToe game;
+	TicTacToeManager manager;
+	int x, o, t;
 	auto decision = 'y';
 	do
 	{
 		string first_player;
-		int position;
 
 		cout<<"Player 1, pick X or O: ";
 		cin>>first_player;
+		while (true)
+		{
+			if (first_player == "X" || first_player == "O")
+			{
+				break;
+			}
+			else
+			{
+				cout<<"Invalid input, please enter X or O: ";
+				cin>>first_player;
+			}
+		}
 		
 		game.start_game(first_player);
 
 		while (!game.game_over())
 		{
-			cout<<"\nEnter position, can be 1-9: ";
-			cin>>position;
-			cout<<"\n";
-			game.mark_board(position);
-			game.display_board();
+			cin>>game;
+			cout<<game;
 		}
 		string winner = game.get_winner();
 		if (winner == "C")
@@ -31,7 +42,12 @@ int main()
 		{
 			cout<<"\n\n"<<winner<<" wins!\n\n";
 		}
-		cout<<"\n\nGame Over!\n\n"<<"Play again?(y/n): ";
+		manager.save_game(game);
+		manager.get_winner_total(x, o, t);
+
+		cout<<"\n\nX wins: "<<x<<"\nO wins: "<<o<<"\nTies: "<<t<<"\n\n";
+
+		cout<<"Would you like to play again?(y/n): ";
 		cin>>decision;
 	}
 	while (decision != 'n' && decision != 'N');
