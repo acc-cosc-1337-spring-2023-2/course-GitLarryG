@@ -1,5 +1,8 @@
 //cpp
 #include "tic_tac_toe.h"
+#include "tic_tac_toe_3.h"
+#include "tic_tac_toe_4.h"
+
 
 void TicTacToe::start_game(string first_player)
 {
@@ -17,27 +20,40 @@ void TicTacToe::start_game(string first_player)
 
 std::ostream& operator<<(std::ostream& out, const TicTacToe& game)
 {
-    for(int i=0; i<3; i++)
+    int row_size = sqrt(game.pegs.size());
+    int size = static_cast<int>(game.pegs.size());
+
+    for(int i=0; i<size; i++)
     {
-        for (int z = 0; z<3; ++z)
+        out<<game.pegs[i];
+        if((i+1) % row_size == 0)
         {
-            out<<game.pegs[i*3+z];
-            if(z<2)
-            {
-                out<<"|";
-            }
+            out<<"\n";
         }
-        out<<"\n";
+        else
+        {
+            out<<"|";
+        }
     }
+    out<<"\n";
+    out<<"\n";
     return out;
 }
 
 std::istream& operator>>(std::istream& in, TicTacToe& game)
 {
     int position;
-    cout<<"Enter position, can be 1-9: ";
+    int max_position = game.pegs.size();
+    cout<<"Enter position, can be 1-" << max_position << ": ";
     in>>position;
-    game.mark_board(position);
+    if (position > 0 && position <= max_position && game.pegs[position-1] == " ")
+    {
+        game.mark_board(position);
+    }
+    else
+    {
+        cout<<"Invalid position, please enter a value between 1 and " << max_position << "\n";
+    }
     return in;
 }
 
@@ -46,39 +62,9 @@ std::istream& operator>>(std::istream& in, TicTacToe& game)
 void TicTacToe::mark_board(int position)
 {
 // 1) Mark vector w position -1 equal to player(private variable)
-    if(position <= 0 || position >= 10)
-    {
-        cout<<"invalid position, please enter a value between 1 and 9";
-    }
-    if (pegs[position-1] == " ")
-    {
-        pegs[position-1] = player;
-    }
-    else
-    {
-        cout<<"Position already filled!\n\n";
-        return;
-    }
+    pegs[position-1] = player;
     set_next_player();
 }
-
-void TicTacToe::display_board() const
-{
-// No parameters
-// Iterate vector of strings pegs to 
-    for(int i=0; i<3; i++)
-    {
-        for (int z = 0; z<3; ++z)
-        {
-            cout<<pegs[i*3+z];
-            if(z<2)
-            {
-                cout<<"|";
-            }
-        }
-        cout<<"\n";
-    }
-}// Display a tic tac toe board in 3x 3 format
 
 void TicTacToe::set_next_player()
 {
@@ -94,9 +80,13 @@ void TicTacToe::set_next_player()
 
 bool TicTacToe::check_board_full()
 {
-    for(int i = 0; i<=8; i++)
+    for(int i = 0; i < pegs.size(); i++)
     {
         if (pegs[i] == " ")
+        {
+            return false;
+        }
+        else if(check_column_win() == true || check_row_win() == true || check_diagonal_win() == true)
         {
             return false;
         }
@@ -118,53 +108,53 @@ void TicTacToe::clear_board()
 
 bool TicTacToe::check_column_win()
 {
-    for (int i = 0; i < 9; i++)
-    {
-        if (i == 0 || i == 1 || i == 2)
-        {
-            if (pegs[i] != " " && pegs[i] == pegs[i+3] && pegs[i] == pegs[i+6])
-            {
-                return true;
-            }
-        }
-    }
+    // for (int i = 0; i < 9; i++)
+    // {
+    //     if (i == 0 || i == 1 || i == 2)
+    //     {
+    //         if (pegs[i] != " " && pegs[i] == pegs[i+3] && pegs[i] == pegs[i+6])
+    //         {
+    //             return true;
+    //         }
+    //     }
+    // }
     return false;
 }
 
 bool TicTacToe::check_row_win()
 {
-    for (int i = 0; i < 9; i++)
-    {
-        if (i == 0 || i == 3 || i == 6)
-        {
-            if (pegs[i] != " " && pegs[i] == pegs[i+1] && pegs[i] == pegs[i+2])
-            {
-                return true;
-            }
-        }
-    }
+    // for (int i = 0; i < 9; i++)
+    // {
+    //     if (i == 0 || i == 3 || i == 6)
+    //     {
+    //         if (pegs[i] != " " && pegs[i] == pegs[i+1] && pegs[i] == pegs[i+2])
+    //         {
+    //             return true;
+    //         }
+    //     }
+    // }
     return false;
 }
 
 bool TicTacToe::check_diagonal_win()
 {
-    for (int i = 0; i < 9; i++)
-    {
-        if (i == 0)
-        {
-            if (pegs[i] != " " && pegs[i] == pegs[i+4] && pegs[i] == pegs[i+8])
-            {
-                return true;
-            }
-        }
-        if (i == 2)
-        {
-            if (pegs[i] != " " && pegs[i] == pegs[i+2] && pegs[i] == pegs[i+4])
-            {
-                return true;
-            }
-        }
-    }
+    // for (int i = 0; i < 9; i++)
+    // {
+    //     if (i == 0)
+    //     {
+    //         if (pegs[i] != " " && pegs[i] == pegs[i+4] && pegs[i] == pegs[i+8])
+    //         {
+    //             return true;
+    //         }
+    //     }
+    //     if (i == 2)
+    //     {
+    //         if (pegs[i] != " " && pegs[i] == pegs[i+2] && pegs[i] == pegs[i+4])
+    //         {
+    //             return true;
+    //         }
+    //     }
+    // }
     return false;
 }
 
@@ -208,3 +198,5 @@ bool TicTacToe::game_over()
     }
     return false;
 }
+
+TicTacToe::TicTacToe(int size) : pegs(size*size, " "){}

@@ -1,20 +1,49 @@
 #include"tic_tac_toe.h"
+#include"tic_tac_toe_3.h"
+#include"tic_tac_toe_4.h"
 #include"tic_tac_toe_manager.h"
+
+
 
 int main() 
 {
-	TicTacToe game;
 	TicTacToeManager manager;
+	unique_ptr<TicTacToe> game;
 	int x, o, t;
 	auto decision = 'y';
 	do
 	{
+		int size;
 		string first_player;
 
-		cout<<"Player 1, pick X or O: ";
-		cin>>first_player;
+		while(true)
+		{
+			cout << "Choose game type (3 for TicTacToe 3, 4 for TicTacToe 4): ";
+			cin >> size;
+
+			if (size == 3) {
+				game = make_unique<TicTacToe3>();
+				break;
+			} else if (size == 4) {
+				game = make_unique<TicTacToe4>();
+				break;
+			} else {
+				std::cout << "Invalid game size!\n";
+			}
+		}
+		
 		while (true)
 		{
+			cout<<"Player 1, pick X or O: ";
+			cin>>first_player;
+			if (first_player == "x")
+			{
+				first_player = "X";
+			}
+			else if (first_player == "o")
+			{
+				first_player = "O";
+			}
 			if (first_player == "X" || first_player == "O")
 			{
 				break;
@@ -22,18 +51,17 @@ int main()
 			else
 			{
 				cout<<"Invalid input, please enter X or O: ";
-				cin>>first_player;
 			}
 		}
 		
-		game.start_game(first_player);
+		game->start_game(first_player);
 
-		while (!game.game_over())
+		while (!game->game_over())
 		{
-			cin>>game;
-			cout<<game;
+			cin>>*game;
+			cout<<*game;
 		}
-		string winner = game.get_winner();
+		string winner = game->get_winner();
 		if (winner == "C")
 		{
 			cout<<"\n\nIt's a tie!\n\n";
