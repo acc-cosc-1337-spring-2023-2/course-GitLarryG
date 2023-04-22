@@ -2,18 +2,20 @@
 #include"tic_tac_toe_3.h"
 #include"tic_tac_toe_4.h"
 #include"tic_tac_toe_manager.h"
+#include"tic_tac_toe_data.h"
 
 
 
 int main() 
 {
-	TicTacToeManager manager;
+	TicTacToeData data;
+	TicTacToeManager manager(data);
 	unique_ptr<TicTacToe> game;
 	int x, o, t;
 	auto decision = 'y';
+	int size;
 	do
 	{
-		int size;
 		string first_player;
 
 		while(true)
@@ -75,11 +77,18 @@ int main()
 
 		cout<<"\n\nX wins: "<<x<<"\nO wins: "<<o<<"\nTies: "<<t<<"\n\n";
 
+
 		cout<<"Would you like to play again?(y/n): ";
 		cin>>decision;
 	}
 	while (decision != 'n' && decision != 'N');
 	{
+		cout<<manager;
+		cout<<"Game Over!\n\n Stats:\n";
+		cout<<"O wins: "<<o<<"\n";
+		cout<<"X wins: "<<x<<"\n";
+		cout<<"Ties: "<<t<<"\n\n";
+		cout<<"Thanks for playing!\n\n";
 		return 0;
 	}
 }

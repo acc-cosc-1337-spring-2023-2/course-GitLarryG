@@ -31,8 +31,8 @@ vector<unique_ptr<TicTacToe>> TicTacToeData::get_games()
     vector<unique_ptr<TicTacToe>> games;
     ifstream read_file(file_name);
     string line;
-    int i = 0;
-    read_file.open(file_name);
+   
+    //read_file.open(file_name);
     if (read_file.is_open())
     {
         while (getline(read_file, line))
@@ -40,7 +40,7 @@ vector<unique_ptr<TicTacToe>> TicTacToeData::get_games()
             vector<string> pegs;
             string winner;
 
-            for (std::size_t i = 0; i < line.size() - 1; i++)
+            for (size_t i = 0; i < line.size() - 1; i++)
             {
                 string peg(1, line[i]);
                 pegs.push_back(peg);

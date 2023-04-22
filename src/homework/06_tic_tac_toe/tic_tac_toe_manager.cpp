@@ -44,3 +44,17 @@ ostream& operator<<(ostream& out, const TicTacToeManager& manager)
     }
     return out;
 }
+
+TicTacToeManager::~TicTacToeManager()
+{
+    data.save_games(games);
+}
+
+TicTacToeManager::TicTacToeManager(TicTacToeData& d) : data{d}
+{
+    games = data.get_games();
+    for (const auto& game : games)
+    {
+        update_winner_count(game->get_winner());
+    }
+}
