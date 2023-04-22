@@ -200,3 +200,6 @@ bool TicTacToe::game_over()
 }
 
 TicTacToe::TicTacToe(int size) : pegs(size*size, " "){}
+TicTacToe::TicTacToe(const vector<string>& p, const string& win) : pegs(p), winner(win){}
+
+vector<string> TicTacToe::get_pegs() const{return pegs;}

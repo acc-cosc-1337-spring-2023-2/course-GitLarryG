@@ -27,8 +27,12 @@ class TicTacToe
 
         string get_player() const{return player;};
         string get_winner();
+        //string get_pegs() const{return pegs;};
 
         TicTacToe(int size);
+        TicTacToe(const vector<string>& p, const string& win);
+
+        vector<string> get_pegs() const;
 
     private:
         void set_next_player();
@@ -37,7 +41,8 @@ class TicTacToe
         void set_winner();
 
         string player;
-        string winner = "";
+        string winner;
+        
 
     protected:
         virtual bool check_column_win() = 0;
@@ -46,5 +51,7 @@ class TicTacToe
 
         vector<string> pegs;
 };
+
+
 
 #endif

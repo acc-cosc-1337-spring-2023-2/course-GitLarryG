@@ -4,7 +4,7 @@ Write double value-return function named add_to_double_1 that accepts a double p
 */
 double add_to_double_1(double num)
 {
-    return num + .3 + .3 + .3
+    return num + 5.0;
 }
 /*
 Write double value-return function named add_to_double_2 that accepts a double parameter

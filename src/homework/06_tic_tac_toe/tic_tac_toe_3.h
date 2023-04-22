@@ -9,4 +9,5 @@ private:
     bool check_row_win();
 public:
     TicTacToe3() : TicTacToe(3) {};
+    TicTacToe3(vector <string> p, string winner) : TicTacToe(p, winner) {};
 };
