@@ -137,7 +137,6 @@ void TicTacToe::set_winner()
 
 string TicTacToe::get_winner()
 {
-    set_winner();
     return winner;
 }
 

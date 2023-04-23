@@ -88,8 +88,8 @@ int main()
 		manager.get_winner_total(x, o, t);
 
 		cout<<"Game Over!\n\n Stats:\n";
-		cout<<"O wins: "<<o<<"\n";
 		cout<<"X wins: "<<x<<"\n";
+		cout<<"O wins: "<<o<<"\n";
 		cout<<"Ties: "<<t<<"\n\n";
 		return 0;
 	}
