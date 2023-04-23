@@ -83,7 +83,8 @@ int main()
 	}
 	while (decision != 'n' && decision != 'N');
 	{
-		cout<<manager;
+		cout<<"\n"<<manager<<"\n";
+		manager.get_winner_total(x, o, t);
 		cout<<"Game Over!\n\n Stats:\n";
 		cout<<"O wins: "<<o<<"\n";
 		cout<<"X wins: "<<x<<"\n";

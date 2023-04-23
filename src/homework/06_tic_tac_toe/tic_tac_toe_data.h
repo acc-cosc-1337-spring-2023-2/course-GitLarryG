@@ -16,7 +16,7 @@ public:
     void save_games(const std::vector <std::unique_ptr <TicTacToe>>& games);
     vector <std::unique_ptr <TicTacToe>> get_games();
 private:
-    const string file_name{"saved_games4.dat"};
+    const string file_name{"saved_games7.dat"};
 };
 
 #endif
