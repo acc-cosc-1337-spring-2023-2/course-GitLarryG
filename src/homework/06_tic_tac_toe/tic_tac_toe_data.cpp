@@ -14,13 +14,14 @@ void TicTacToeData::save_games(const vector <unique_ptr<TicTacToe>>& games)
     ofstream save_file;
     save_file.open(file_name);
 
-    for (auto& game : games)
+    for (const auto& game : games)
     {
-        for (auto peg : game->get_pegs())
+        vector<string> pegs = game->get_pegs();
+        for (auto peg : pegs)
         {
             save_file << peg;
         }
-        save_file << game->get_winner();
+        save_file << "," << game->get_winner();
         save_file << "\n";
     }
     save_file.close();
@@ -31,35 +32,38 @@ vector<unique_ptr<TicTacToe>> TicTacToeData::get_games()
     vector<unique_ptr<TicTacToe>> games;
     ifstream read_file(file_name);
     string line;
-   
-    //read_file.open(file_name);
+    read_file.open(file_name);
+    
     if (read_file.is_open())
     {
         while (getline(read_file, line))
         {
             vector<string> pegs;
             string winner;
-
-            for (size_t i = 0; i < line.size() - 1; i++)
+            size_t delimiter_position = line.find(",");
+            if (delimiter_position != string::npos)
             {
-                string peg(1, line[i]);
-                pegs.push_back(peg);
+                for (size_t i = 0; i < delimiter_position; i++)
+                {
+                    string peg(1, line[i]);
+                    pegs.push_back(peg);
+                }
+
+                winner = string(1, line[delimiter_position + 1]);
+
+                unique_ptr<TicTacToe> game;
+
+                if (pegs.size() == 9)
+                {
+                    game = make_unique<TicTacToe3>(pegs, winner);
+                }
+                else if (pegs.size() == 16)
+                {
+                    game = make_unique<TicTacToe4>(pegs, winner);
+                }
+
+                games.push_back(std::move(game));
             }
-
-            winner = line[line.size() - 1];
-
-            unique_ptr<TicTacToe> game;
-
-            if (pegs.size() == 9)
-            {
-                game = make_unique<TicTacToe3>(pegs, winner);
-            }
-            else if (pegs.size() == 16)
-            {
-                game = make_unique<TicTacToe4>(pegs, winner);
-            }
-
-            games.push_back(std::move(game));
         }
     read_file.close();
     }

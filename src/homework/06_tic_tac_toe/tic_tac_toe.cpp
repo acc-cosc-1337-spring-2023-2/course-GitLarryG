@@ -96,12 +96,12 @@ bool TicTacToe::check_board_full()
 
 void TicTacToe::clear_board()
 {
-    for (int i = 0; i < 9; i++)
+    for (int i = 0; i < pegs.size(); i++)
     {
         if (pegs[i] != " ")
-            {
-                pegs[i] = " ";
-            }
+        {
+            pegs[i] = " ";
+        }
     }
 }
 
