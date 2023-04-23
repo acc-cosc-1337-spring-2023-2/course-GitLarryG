@@ -1,3 +1,4 @@
+#include "tic_tac_toe.h"
 #include "tic_tac_toe_4.h"
 
 /*
@@ -10,7 +11,20 @@ Win by column if and return true if (each column index)
 else
 false
 */
-
+bool TicTacToe4::check_column_win()
+{
+    for (int i = 0; i < 16; i++)
+    {
+        if (i == 0 || i == 1 || i == 2 || i == 3)
+        {
+            if (pegs[i] != " " && pegs[i] == pegs[i+4] && pegs[i] == pegs[i+8] && pegs[i] == pegs[i+12])
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 
 
 
@@ -22,7 +36,20 @@ Win by row if
 8, 9, 10, 11 are equal 
 12,13,14, 15 are equal
 */
-
+bool TicTacToe4::check_row_win()
+{
+    for (int i = 0; i < 16; i++)
+    {
+        if (i == 0 || i == 4 || i == 8 || i == 12)
+        {
+            if (pegs[i] != " " && pegs[i] == pegs[i+1] && pegs[i] == pegs[i+2] && pegs[i] == pegs[i+3])
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
 
 
 /*
@@ -34,3 +61,24 @@ Win diagonally
 12,13,14, 15
 
 */
+bool TicTacToe4::check_diagonal_win()
+{
+    for (int i = 0; i < 16; i++)
+    {
+        if (i == 0)
+        {
+            if (pegs[i] != " " && pegs[i] == pegs[i+5] && pegs[i] == pegs[i+10] && pegs[i] == pegs[i+15])
+            {
+                return true;
+            }
+        }
+        else if (i == 3)
+        {
+            if (pegs[i] != " " && pegs[i] == pegs[i+3] && pegs[i] == pegs[i+6] && pegs[i] == pegs[i+9])
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}

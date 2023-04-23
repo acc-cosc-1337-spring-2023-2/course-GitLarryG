@@ -2,3 +2,8 @@
 
 //
 
+Vector :: ~Vector () {
+    cout<<"Deleting Vector...";
+    delete [] elements;
+}
+

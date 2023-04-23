@@ -11,8 +11,14 @@ Create vector of Shape pointers
 iterate with auto
 */
 
+using std::vector;
+using std::unique_ptr; using std::make_unique;
+
 int main() 
 {
-
+	const auto SIZE = 3;
+	
 	return 0;
+}
+
 }
