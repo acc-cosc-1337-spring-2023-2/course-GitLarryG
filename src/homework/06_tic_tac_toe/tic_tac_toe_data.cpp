@@ -39,7 +39,6 @@ vector<unique_ptr<TicTacToe>> TicTacToeData::get_games()
         while (getline(read_file, line))
         {
             vector<string> pegs;
-            string winner;
             size_t delimiter_position = line.find(",");
 
             for (size_t i = 0; i < delimiter_position; i++)
@@ -47,7 +46,7 @@ vector<unique_ptr<TicTacToe>> TicTacToeData::get_games()
                 string peg(1, line[i]);
                 pegs.push_back(peg);
             }
-            winner = line.substr(delimiter_position + 1);
+            string winner = line.substr(delimiter_position + 1);
 
             unique_ptr<TicTacToe> game;
 
