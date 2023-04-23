@@ -63,14 +63,14 @@ int main()
 			cin>>*game;
 			cout<<*game;
 		}
-		string winner = game->get_winner();
-		if (winner == "C")
+		string gamewinner = game->get_winner();
+		if (gamewinner == "C")
 		{
 			cout<<"\n\nIt's a tie!\n\n";
 		}
 		else
 		{
-			cout<<"\n\n"<<winner<<" wins!\n\n";
+			cout<<"\n\n"<<gamewinner<<" wins!\n\n";
 		}
 		manager.save_game(game);
 		manager.get_winner_total(x, o, t);
@@ -84,12 +84,13 @@ int main()
 	while (decision != 'n' && decision != 'N');
 	{
 		cout<<"\n"<<manager<<"\n";
+
 		manager.get_winner_total(x, o, t);
+
 		cout<<"Game Over!\n\n Stats:\n";
 		cout<<"O wins: "<<o<<"\n";
 		cout<<"X wins: "<<x<<"\n";
 		cout<<"Ties: "<<t<<"\n\n";
-		cout<<"Thanks for playing!\n\n";
 		return 0;
 	}
 }

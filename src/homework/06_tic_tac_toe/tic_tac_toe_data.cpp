@@ -30,6 +30,7 @@ void TicTacToeData::save_games(const vector <unique_ptr<TicTacToe>>& games)
 
 vector<unique_ptr<TicTacToe>> TicTacToeData::get_games()
 {
+    {
     vector<unique_ptr<TicTacToe>> games;
     ifstream read_file(file_name);
     string line;
@@ -38,28 +39,24 @@ vector<unique_ptr<TicTacToe>> TicTacToeData::get_games()
     {
         while (getline(read_file, line))
         {
-            vector<string> pegs;
-            size_t delimiter_position = line.find(",");
-
-            for (size_t i = 0; i < delimiter_position; i++)
-            {
-                string peg(1, line[i]);
-                pegs.push_back(peg);
-            }
+            size_t delimiter_position = line.find(',');
+            string pegs_string = line.substr(0, delimiter_position);
             string winner = line.substr(delimiter_position + 1);
 
-            unique_ptr<TicTacToe> game;
+            vector<string> pegs;
+            for (size_t i = 0; i < pegs_string.size(); i++)
+            {
+                pegs.emplace_back(string(1, pegs_string[i]));
+            }
 
             if (pegs.size() == 9)
             {
-                game = make_unique<TicTacToe3>(pegs, winner);
+                games.push_back(make_unique<TicTacToe3>(pegs, winner));
             }
             else if (pegs.size() == 16)
             {
-                game = make_unique<TicTacToe4>(pegs, winner);
+                games.push_back(make_unique<TicTacToe4>(pegs, winner));
             }
-
-            games.push_back(std::move(game));
         }
     
     read_file.close();
@@ -69,4 +66,5 @@ vector<unique_ptr<TicTacToe>> TicTacToeData::get_games()
         cout << "Unable to open or file not found.";
     }
     return games;
+}
 }
